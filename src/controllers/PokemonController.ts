@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Query, Render } from '@nestjs/common';
 import { PokemonService } from '../services/pokemon.service';
 
 @Controller('/pokemon')
@@ -7,9 +7,16 @@ export class PokemonController {
 
   @Get()
   @Render('index')
-  async root(): Promise<Readonly<any>> {
+  async showPokemonList(): Promise<Readonly<any>> {
     const pokemonList = await this.pokemonService.getAllPokemon();
     return { list: pokemonList };
+  }
+
+  @Get('/detail')
+  @Render('pokemonDetail')
+  async showPokemonDetail(@Query('name') name : Readonly<string>) {
+    const pokemonDetail = await this.pokemonService.getPokemonDetails(name)
+    return { detail: pokemonDetail }
   }
 
   @Get('/data')

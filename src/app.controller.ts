@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Post, Put, Query, Render } from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller()
 export class AppController {
@@ -7,6 +7,6 @@ export class AppController {
   @Get()
   @Render('index')
   root(): any {
-    return  "ok";
+    return "ok";
   }
 }
